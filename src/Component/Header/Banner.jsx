@@ -8,9 +8,9 @@ const Banner = () => {
         className="w-screen h-fit md:p-40 pt-30 h-50 bg-no-repeat bg-cover"
         style={{ backgroundImage: `url(${imgs})` }}
       >
-        <div className="w-96 ms-40">
+        <div className="w-96 md:ms-40 mx-auto md:text-left text-center">
           <h1 className="text-white  font-bold md:text-4xl">
-            <span className="text-7xl">
+            <span className="md:text-7xl text-4xl">
               Good <span className="text-red-600">Food</span>
             </span>
             , <br />

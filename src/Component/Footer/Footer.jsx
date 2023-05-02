@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <>
       <div className="mt-16 py-20 px-10 bg-black text-white">
-        <div className="grid md:grid-cols-5 md:text-left   text-white gap-8 leading-8">
+        <div className="grid md:grid-cols-5 md:text-left   text-white gap-8 text-center leading-8">
           <div>
             <h1 className="text-2xl font-bold ">Good Food</h1>
             <p className="leading-none my-4">
@@ -44,7 +44,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="md:flex items-center justify-between mt-16 text-slate-400 text-xs">
+        <div className="md:flex items-center justify-between mt-16 text-slate-400 text-xs md:text-left  text-center ">
           <div>
             <span>@blueKey.All right reserved</span>
           </div>
