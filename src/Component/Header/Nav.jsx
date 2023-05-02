@@ -140,7 +140,6 @@ function Nav() {
           )}
         </Transition>
       </nav>
-      <Banner />
     </div>
   );
 }
