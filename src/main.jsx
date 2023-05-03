@@ -5,6 +5,7 @@ import Chef from "./Component/Chef/Chef.jsx";
 import Banner from "./Component/Header/Banner.jsx";
 import Home from "./Component/Home.jsx";
 import "./index.css";
+import Wrapper from "./Wrapper.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -12,11 +13,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Banner />,
-      },
-      {
-        path: "/",
-        element: <h1>Hello</h1>,
+        element: <Wrapper />,
       },
     ],
   },
