@@ -19,7 +19,7 @@ const Chef = () => {
         TOP CHEF
       </h1>
       <div className="md:grid grid-cols-3 gap-4">
-        {chefData.chefs.map((chefSingle) => {
+        {chefData.chefs?.map((chefSingle) => {
           return <ChefCart chef={chefSingle} key={chefSingle.id}></ChefCart>;
         })}
       </div>

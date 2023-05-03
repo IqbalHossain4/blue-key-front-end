@@ -14,9 +14,11 @@ const ChefCart = ({ chef }) => {
         <img src={photo} style={imge} alt="" />
         <div className="mt-4 md:text-left text-center">
           <h3 className="font-bold">Name: {name}</h3>
-          <p className="text-md">Experience: {years_of_experience}</p>
-          <p className="text-md">Recipe: {num_of_recipes}</p>
-          <p className="text-md">Likes: {likes}</p>
+          <p className="text-md font-semibold">
+            Experience: {years_of_experience} year
+          </p>
+          <p className="text-md font-semibold">Recipe: {num_of_recipes}</p>
+          <p className="text-md font-semibold">Likes: {likes}</p>
 
           <Link to={`/chef/${id}`} className="w-full rounded font-bold ">
             <button className="text-gray-300 mt-4 hover:bg-gray-700 bg-gray-800 py-2 px-4 rounded w-full">

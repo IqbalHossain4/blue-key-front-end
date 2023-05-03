@@ -19,8 +19,7 @@ const router = createBrowserRouter([
           {
             path: "/",
             element: <Chef />,
-            loader: () =>
-              fetch("https://myserver-hofczrace-iqbalhossain4.vercel.app/chef"),
+            loader: () => fetch("https://myserver-eight.vercel.app/chef"),
           },
         ],
       },
@@ -29,17 +28,13 @@ const router = createBrowserRouter([
         path: "chef/:id",
         element: <ChefDetails />,
         loader: ({ params }) =>
-          fetch(
-            `https://myserver-hofczrace-iqbalhossain4.vercel.app/chef/${params.id}`
-          ),
+          fetch(`https://myserver-eight.vercel.app/chef/${params.id}`),
       },
       {
         path: "food/:id",
         element: <FoodDetails />,
         loader: ({ params }) =>
-          fetch(
-            `https://myserver-hofczrace-iqbalhossain4.vercel.app/details/${params.id}`
-          ),
+          fetch(`https://myserver-eight.vercel.app/details/${params.id}`),
       },
     ],
   },
