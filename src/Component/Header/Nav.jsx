@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Transition } from "@headlessui/react";
 import { Link as Active, NavLink } from "react-router-dom";
-import Banner from "./Banner";
 import { useContext } from "react";
 import { AuthContext } from "../../Context/AuthProvider";
 
@@ -49,7 +48,7 @@ function Nav() {
                   <Active to="/career">Career</Active>
                   <Active to="/contact">Contact Us</Active>
                   {user ? (
-                    <Active>
+                    <Active to="/">
                       <button className="no-underline" onClick={handleLogout}>
                         LogOut
                       </button>
@@ -143,7 +142,7 @@ function Nav() {
                 <Active to="/contact">Contact Us</Active>
 
                 {user ? (
-                  <Active>
+                  <Active to="/">
                     <button onClick={handleLogout}>LogOut</button>
                   </Active>
                 ) : (

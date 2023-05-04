@@ -9,6 +9,7 @@ const Food = ({ food }) => {
   const { id, name, photo, description, rating } = food;
   const imge = {
     width: "100%",
+    borderRadius: "5px",
   };
   return (
     <div>

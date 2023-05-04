@@ -8,6 +8,7 @@ const FoodDetails = () => {
   const imge = {
     width: "100%",
     height: "450px",
+    borderRadius: "5px",
   };
   return (
     <div className="mt-16 w-full flex items-center justify-center">

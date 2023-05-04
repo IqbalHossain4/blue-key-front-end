@@ -7,6 +7,7 @@ const ChefCart = ({ chef }) => {
   const imge = {
     width: "100%",
     height: "350px",
+    borderRadius: "5px",
   };
   return (
     <div className="mt-16">
