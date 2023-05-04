@@ -2,10 +2,20 @@ import React, { useState } from "react";
 import { Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import Banner from "./Banner";
+import { useContext } from "react";
+import { AuthContext } from "../../Context/AuthProvider";
 
 function Nav() {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, loguts } = useContext(AuthContext);
 
+  const handleLogout = () => {
+    loguts()
+      .then(() => {})
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
   return (
     <div>
       <nav className="bg-gray-800">
@@ -17,7 +27,7 @@ function Nav() {
               </div>
 
               <div className="hidden md:block">
-                <div className="ml-10 flex items-baseline space-x-4">
+                <div className="ml-10 flex items-center space-x-4">
                   <Link
                     to="/"
                     className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium"
@@ -32,18 +42,32 @@ function Nav() {
                     Blogs
                   </Link>
 
-                  <Link
-                    to="/login"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Login
-                  </Link>
+                  {user ? (
+                    <button
+                      onClick={handleLogout}
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      LogOut
+                    </button>
+                  ) : (
+                    <Link
+                      to="/login"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      SignIn
+                    </Link>
+                  )}
 
                   <Link
                     to="/profile"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md text-sm font-medium"
                   >
-                    Profile
+                    <img
+                      title={user?.displayName}
+                      className="rounded-full w-12 h-12"
+                      src={user?.photoURL}
+                      alt=""
+                    />
                   </Link>
                 </div>
               </div>
@@ -122,18 +146,32 @@ function Nav() {
                   Blogs
                 </Link>
 
-                <Link
-                  to=""
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Login
-                </Link>
+                {user ? (
+                  <button
+                    onClick={handleLogout}
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    LogOut
+                  </button>
+                ) : (
+                  <Link
+                    to="/login"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    SignIn
+                  </Link>
+                )}
 
                 <Link
-                  to=""
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                  to="/profile"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md text-sm font-medium"
                 >
-                  Profile
+                  <img
+                    title={user?.displayName}
+                    className="rounded-full w-12 h-12"
+                    src={user?.photoURL}
+                    alt=""
+                  />
                 </Link>
               </div>
             </div>

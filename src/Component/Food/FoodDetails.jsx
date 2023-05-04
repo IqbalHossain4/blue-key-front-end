@@ -20,6 +20,13 @@ const FoodDetails = () => {
           </p>
           <h3 className="font-bold mb-4">{name}</h3>
           <p className="text-md font-semibold">{description}</p>
+          <ul>
+            <h1 className="font-bold text-2xl mt-2">Ingredients</h1>
+            <li className="font-bold">Lentils</li>
+            <li className="font-bold">Onion</li>
+            <li className="font-bold">Carrots</li>
+            <li className="font-bold">Tomato Puree</li>
+          </ul>
         </div>
       </div>
     </div>

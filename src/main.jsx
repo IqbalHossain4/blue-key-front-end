@@ -5,6 +5,10 @@ import Chef from "./Component/Chef/Chef.jsx";
 import ChefDetails from "./Component/Chef/ChefDetails.jsx";
 import FoodDetails from "./Component/Food/FoodDetails.jsx";
 import Home from "./Component/Home.jsx";
+import PriveteRoute from "./Component/PriveteRouter/PriveteRoute.jsx";
+import Signin from "./Component/SignIn/Signin.jsx";
+import SignUp from "./Component/SignIn/SignUp.jsx";
+import AuthProvider from "./Context/AuthProvider.jsx";
 import "./index.css";
 import Wrapper from "./Wrapper.jsx";
 const router = createBrowserRouter([
@@ -23,10 +27,22 @@ const router = createBrowserRouter([
           },
         ],
       },
+      {
+        path: "login",
+        element: <Signin />,
+      },
+      {
+        path: "signUp",
+        element: <SignUp />,
+      },
 
       {
         path: "chef/:id",
-        element: <ChefDetails />,
+        element: (
+          <PriveteRoute>
+            <ChefDetails />
+          </PriveteRoute>
+        ),
         loader: ({ params }) =>
           fetch(`https://myserver-eight.vercel.app/chef/${params.id}`),
       },
@@ -42,6 +58,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
 );
