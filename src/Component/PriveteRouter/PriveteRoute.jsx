@@ -7,6 +7,9 @@ import LoadingSpinner from "../loader/LoadingSpinner";
 const PriveteRoute = ({ children }) => {
   const location = useLocation();
   const { user, loader } = useContext(AuthContext);
+  if (loader) {
+    <LoadingSpinner />;
+  }
   if (user) {
     return children;
   }

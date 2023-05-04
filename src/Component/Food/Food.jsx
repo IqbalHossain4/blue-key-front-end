@@ -1,11 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FaStarHalfAlt, FaHeart } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Food = ({ food }) => {
   const notify = () => toast("Added Favorite !");
+  const location = useLocation();
   const { id, name, photo, description, rating } = food;
   const imge = {
     width: "100%",
@@ -20,7 +21,7 @@ const Food = ({ food }) => {
             <div>
               <h3 className="font-bold">Name: {name}</h3>
               <span className="flex items-center">
-                <FaStarHalfAlt /> <span> </span>
+                <FaStarHalfAlt />
                 {rating}
               </span>
             </div>
@@ -28,7 +29,9 @@ const Food = ({ food }) => {
             <div>
               <p title="Favorite">
                 <button onClick={notify}>
-                  <FaHeart />
+                  <FaHeart
+                    className={`${!notify ? "text-red-400" : "text-black"}`}
+                  />
                 </button>
                 <ToastContainer />
               </p>
