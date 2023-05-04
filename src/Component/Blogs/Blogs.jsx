@@ -8,8 +8,8 @@ const Blogs = () => {
         <h3 className="font-bold">
           1. Differences between uncontrolled and controlled components?
         </h3>
-        <p>
-          <span className="font-bold">Answer: </span>n React, controlled
+        <p className="font-semibold">
+          <span className="font-bold ">Answer: </span>n React, controlled
           components refer to components that have their state and behavior
           controlled by the parent component. These components rely on props
           passed down from the parent component to update their state and
@@ -20,7 +20,7 @@ const Blogs = () => {
         <h3 className="font-bold mt-4">
           2. How to validate React props using PropTypes?
         </h3>
-        <p>
+        <p className="font-semibold">
           <span className="font-bold">Answer: </span>
           <ol>
             <li>PropTypes.any : The prop can be of any data type.</li>
@@ -35,7 +35,7 @@ const Blogs = () => {
         <h3 className="font-bold mt-4">
           3.Difference between nodejs and express js?
         </h3>
-        <p>
+        <p className="font-semibold">
           <span className="font-bold">Answer: </span>
           Express is a minimal and flexible node. js web application framework,
           providing a robust set of features for building single and multi-page,
@@ -47,7 +47,7 @@ const Blogs = () => {
         <h3 className="font-bold mt-4">
           4. What is a custom hook, and why will you create ?
         </h3>
-        <p>
+        <p className="font-semibold">
           <span className="font-bold">Answer: </span>
           Custom React JS hooks are reusable functions that a React JS software
           developer can use to add special and unique functionality to the React
