@@ -3,7 +3,7 @@ import React from "react";
 const Career = () => {
   return (
     <div className="mt-16">
-      <div className="flex items-center justify-between gap-16">
+      <div className="md:flex items-center justify-between gap-16">
         <div>
           <img
             src={
