@@ -91,9 +91,12 @@ const Signin = () => {
             type="submit"
             value="SignIn"
           />
-          <Link to="/signUp" className="text-teal-600">
-            Create New Account
-          </Link>
+          <p className="text-gray-600 mt-2">
+            Do you have an Account?
+            <Link to="/signUp" className="ms-2 text-teal-600">
+              SignUp
+            </Link>
+          </p>
         </form>
         <div className="flex mt-4 items-center justify-center">
           <button onClick={handleGoogle} className="w-12">

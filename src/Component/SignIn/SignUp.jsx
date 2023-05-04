@@ -134,9 +134,12 @@ const SignUp = () => {
             type="submit"
             value="SignUp"
           />
-          <Link to="/login" className="text-teal-600 mt-">
-            SignIn
-          </Link>
+          <p className="text-gray-600 mt-2">
+            I have an Account?
+            <Link to="/login" className="ms-2 text-teal-600 font-semibold">
+              SignIn
+            </Link>
+          </p>
         </form>
       </div>
     </div>

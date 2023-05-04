@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Transition } from "@headlessui/react";
-import { Link } from "react-router-dom";
+import { Link as Active, NavLink } from "react-router-dom";
 import Banner from "./Banner";
 import { useContext } from "react";
 import { AuthContext } from "../../Context/AuthProvider";
@@ -16,6 +16,21 @@ function Nav() {
         console.log(error.message);
       });
   };
+
+  const Active = ({ to, children }) => {
+    return (
+      <NavLink
+        to={to}
+        className={({ isActive }) =>
+          isActive
+            ? "underline text-white hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            : "text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        }
+      >
+        {children}
+      </NavLink>
+    );
+  };
   return (
     <div>
       <nav className="bg-gray-800">
@@ -28,59 +43,30 @@ function Nav() {
 
               <div className="hidden md:block">
                 <div className="ml-10 flex items-center space-x-4">
-                  <Link
-                    to="/"
-                    className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Home
-                  </Link>
+                  <Active to="/">Home</Active>
 
-                  <Link
-                    to="/blog"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Blogs
-                  </Link>
-                  <Link
-                    to="/career"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                  >
-                    Career
-                  </Link>
-                  <Link
-                    to="/contact"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                  >
-                    Contact Us
-                  </Link>
+                  <Active to="/blog">Blogs</Active>
+                  <Active to="/career">Career</Active>
+                  <Active to="/contact">Contact Us</Active>
                   {user ? (
-                    <button
-                      onClick={handleLogout}
-                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                    >
-                      LogOut
-                    </button>
+                    <Active>
+                      <button className="no-underline" onClick={handleLogout}>
+                        LogOut
+                      </button>
+                    </Active>
                   ) : (
-                    <Link
-                      to="/login"
-                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                    >
-                      SignIn
-                    </Link>
+                    <Active to="/login">SignIn</Active>
                   )}
 
                   {user && (
-                    <Link
-                      to=""
-                      className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md text-sm font-medium"
-                    >
+                    <Active to="">
                       <img
                         title={user?.displayName}
                         className="rounded-full w-12 h-12"
                         src={user?.photoURL}
                         alt=""
                       />
-                    </Link>
+                    </Active>
                   )}
                 </div>
               </div>
@@ -145,60 +131,34 @@ function Nav() {
           {(ref) => (
             <div className="md:hidden" id="mobile-menu">
               <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <Link
-                  to="/"
-                  className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Home
-                </Link>
+                <Active to="/">Home</Active>
 
-                <Link
+                <Active
                   to="/blog"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   Blogs
-                </Link>
-                <Link
-                  to="/career"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Career
-                </Link>
-                <Link
-                  to="/contact"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Contact Us
-                </Link>
+                </Active>
+                <Active to="/career">Career</Active>
+                <Active to="/contact">Contact Us</Active>
 
                 {user ? (
-                  <button
-                    onClick={handleLogout}
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    LogOut
-                  </button>
+                  <Active>
+                    <button onClick={handleLogout}>LogOut</button>
+                  </Active>
                 ) : (
-                  <Link
-                    to="/login"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    SignIn
-                  </Link>
+                  <Active to="/login">SignIn</Active>
                 )}
 
                 {user && (
-                  <Link
-                    to="/profile"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md text-sm font-medium"
-                  >
+                  <Active to="/">
                     <img
                       title={user?.displayName}
                       className="rounded-full w-12 h-12"
                       src={user?.photoURL}
                       alt=""
                     />
-                  </Link>
+                  </Active>
                 )}
               </div>
             </div>
