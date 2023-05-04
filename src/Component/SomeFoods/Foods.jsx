@@ -15,7 +15,7 @@ const Foods = () => {
   }, []);
   return (
     <div>
-      <h1 className="text-center mt-8 font-bold text-4xl underline">
+      <h1 className="text-center mt-10 font-bold text-4xl underline">
         POPULAR FOOD COLLECTION
       </h1>
       <div className="md:grid grid-cols-3 gap-4">

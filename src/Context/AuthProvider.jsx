@@ -13,6 +13,7 @@ import {
 } from "firebase/auth";
 import app from "../Firebase/firebase.init";
 import { useEffect } from "react";
+import LoadingSpinner from "../Component/loader/LoadingSpinner";
 
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
@@ -22,6 +23,10 @@ const AuthProvider = ({ children }) => {
 
   const [user, setUser] = useState(null);
   const [loader, setLoader] = useState(true);
+
+  useEffect(() => {
+    setLoader(<LoadingSpinner />);
+  }, []);
 
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -59,6 +64,7 @@ const AuthProvider = ({ children }) => {
     signInGoogle,
     loguts,
     loader,
+    signInGithub,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

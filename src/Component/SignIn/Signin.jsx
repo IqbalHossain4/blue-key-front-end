@@ -1,12 +1,12 @@
 import React from "react";
-import { getAuth, updateProfile } from "firebase/auth";
+import { getAuth, GithubAuthProvider, updateProfile } from "firebase/auth";
 import app from "../../Firebase/firebase.init";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../Context/AuthProvider";
 
 const Signin = () => {
-  const { user, signIn, signInGoogle } = useContext(AuthContext);
+  const { user, signIn, signInGoogle, signInGithub } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -36,7 +36,20 @@ const Signin = () => {
         const displayName = user.displayName;
         const email = user.email;
         const photoURL = user.photoURL;
+        navigate(from);
         console.log(displayName, email, photoURL);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+  const handleGithub = () => {
+    signInGithub()
+      .then((result) => {
+        const credential = GithubAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const user = result.user;
+        navigate(from);
       })
       .catch((error) => {
         console.log(error.message);
@@ -87,14 +100,25 @@ const Signin = () => {
             Create New Account
           </Link>
         </form>
-        <button onClick={handleGoogle} className="w-12">
-          <img
-            src={
-              "https://freepngimg.com/download/google/66903-google-pay-gboard-platform-logo-cloud.png"
-            }
-            alt=""
-          />
-        </button>
+        <div className="flex mt-4 items-center justify-center">
+          <button onClick={handleGoogle} className="w-12">
+            <img
+              src={
+                "https://freepngimg.com/download/google/66903-google-pay-gboard-platform-logo-cloud.png"
+              }
+              alt=""
+            />
+          </button>
+
+          <button onClick={handleGithub} className="w-12">
+            <img
+              src={
+                "https://logos-world.net/wp-content/uploads/2020/11/GitHub-Logo.png"
+              }
+              alt=""
+            />
+          </button>
+        </div>
       </div>
     </div>
   );

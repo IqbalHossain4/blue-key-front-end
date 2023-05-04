@@ -2,21 +2,47 @@ import { updateProfile } from "firebase/auth";
 import React from "react";
 import { useState } from "react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 
 const SignUp = () => {
   const { user, createUser } = useContext(AuthContext);
-  const [emails, setEmails] = useState();
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [emailSuccess, setEmailSuccess] = useState("");
+  const [passwordSuccess, setPasswordSuccess] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  console.log(location);
   const handleSignUp = (event) => {
     event.preventDefault();
+    setEmailError("");
+    setPasswordError("");
+    setEmailSuccess("");
+    setPasswordSuccess("");
     const name = event.target.name.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
     const myPhoto = event.target.myImage.value;
+
+    if (password == "") {
+      setPasswordError("please fill up Empty file ");
+      return;
+    }
+    if (email == "") {
+      setEmailError("please fill up Empty file ");
+      return;
+    }
+    if (password.length < 6) {
+      setPasswordError("need at least six character");
+      return;
+    }
     createUser(email, password, name, myPhoto)
       .then((result) => {
         const user = result.user;
+        setEmailSuccess("Login SuccessFull");
+
         updateProfile(user, {
           displayName: name,
           photoURL: myPhoto,
@@ -27,17 +53,16 @@ const SignUp = () => {
           .catch((error) => {
             console.log(error.message);
           });
+        navigate(from);
         console.log(user);
       })
       .catch((error) => {
         console.log(error.message);
+
+        // setPasswordError(error.message);
       });
   };
 
-  const emai = (e) => {
-    setEmails(e.target.value);
-    console.log(e.target.value);
-  };
   return (
     <div>
       <h1 className="text-center font-bold text-4xl underline mt-16">
@@ -72,9 +97,11 @@ const SignUp = () => {
               placeholder="Email Please"
               name="email"
               id=""
-              value={emails}
-              onChange={emai}
+              required
             />
+            <br />
+            <p className="text-red-400 ">{emailError}</p>
+            <p className="text-green-600">{emailSuccess}</p>
           </div>
 
           <div className="mt-4">
@@ -86,6 +113,8 @@ const SignUp = () => {
               name="password"
               id=""
             />
+            <br />
+            <p className="text-red-600">{passwordError}</p>
           </div>
           <input
             className="mt-4"

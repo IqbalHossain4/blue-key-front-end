@@ -36,12 +36,23 @@ function Nav() {
                   </Link>
 
                   <Link
-                    to="/blogs"
+                    to="/blog"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
                     Blogs
                   </Link>
-
+                  <Link
+                    to="/career"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                  >
+                    Career
+                  </Link>
+                  <Link
+                    to="/contact"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                  >
+                    Contact Us
+                  </Link>
                   {user ? (
                     <button
                       onClick={handleLogout}
@@ -58,17 +69,19 @@ function Nav() {
                     </Link>
                   )}
 
-                  <Link
-                    to="/profile"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md text-sm font-medium"
-                  >
-                    <img
-                      title={user?.displayName}
-                      className="rounded-full w-12 h-12"
-                      src={user?.photoURL}
-                      alt=""
-                    />
-                  </Link>
+                  {user && (
+                    <Link
+                      to="/profile"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md text-sm font-medium"
+                    >
+                      <img
+                        title={user?.displayName}
+                        className="rounded-full w-12 h-12"
+                        src={user?.photoURL}
+                        alt=""
+                      />
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
@@ -140,10 +153,22 @@ function Nav() {
                 </Link>
 
                 <Link
-                  to=""
+                  to="/blog"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   Blogs
+                </Link>
+                <Link
+                  to="/career"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                >
+                  Career
+                </Link>
+                <Link
+                  to="/contact"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                >
+                  Contact Us
                 </Link>
 
                 {user ? (
@@ -162,17 +187,19 @@ function Nav() {
                   </Link>
                 )}
 
-                <Link
-                  to="/profile"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md text-sm font-medium"
-                >
-                  <img
-                    title={user?.displayName}
-                    className="rounded-full w-12 h-12"
-                    src={user?.photoURL}
-                    alt=""
-                  />
-                </Link>
+                {user && (
+                  <Link
+                    to="/profile"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md text-sm font-medium"
+                  >
+                    <img
+                      title={user?.displayName}
+                      className="rounded-full w-12 h-12"
+                      src={user?.photoURL}
+                      alt=""
+                    />
+                  </Link>
+                )}
               </div>
             </div>
           )}

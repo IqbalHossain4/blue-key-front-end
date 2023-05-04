@@ -6,19 +6,25 @@ import ChefDetails from "./Component/Chef/ChefDetails.jsx";
 import FoodDetails from "./Component/Food/FoodDetails.jsx";
 import Home from "./Component/Home.jsx";
 import PriveteRoute from "./Component/PriveteRouter/PriveteRoute.jsx";
+import ErrorPage from "./Component/ErrorPage/ErrorPage";
 import Signin from "./Component/SignIn/Signin.jsx";
 import SignUp from "./Component/SignIn/SignUp.jsx";
 import AuthProvider from "./Context/AuthProvider.jsx";
 import "./index.css";
 import Wrapper from "./Wrapper.jsx";
+import Blogs from "./Component/Blogs/Blogs.jsx";
+import Career from "./Component/extra/Career.jsx";
+import Contact from "./Component/extra/Contact.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
         element: <Wrapper />,
+
         children: [
           {
             path: "/",
@@ -51,6 +57,18 @@ const router = createBrowserRouter([
         element: <FoodDetails />,
         loader: ({ params }) =>
           fetch(`https://myserver-eight.vercel.app/details/${params.id}`),
+      },
+      {
+        path: "blog",
+        element: <Blogs />,
+      },
+      {
+        path: "career",
+        element: <Career />,
+      },
+      {
+        path: "contact",
+        element: <Contact />,
       },
     ],
   },
