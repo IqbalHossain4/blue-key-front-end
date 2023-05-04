@@ -17,12 +17,8 @@ const Signin = () => {
     signIn(email, password)
       .then((result) => {
         const user = result.user;
-        const displayName = user.displayName;
-        const email = user.email;
-        const photoURL = user.photoURL;
-
-        form.reset();
         navigate(from);
+        form.reset();
       })
       .catch((error) => {
         console.log(error.message);
@@ -37,7 +33,6 @@ const Signin = () => {
         const email = user.email;
         const photoURL = user.photoURL;
         navigate(from);
-        console.log(displayName, email, photoURL);
       })
       .catch((error) => {
         console.log(error.message);

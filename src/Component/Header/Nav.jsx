@@ -8,7 +8,7 @@ import { AuthContext } from "../../Context/AuthProvider";
 function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const { user, loguts } = useContext(AuthContext);
-
+  console.log(user);
   const handleLogout = () => {
     loguts()
       .then(() => {})
@@ -71,7 +71,7 @@ function Nav() {
 
                   {user && (
                     <Link
-                      to="/profile"
+                      to=""
                       className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md text-sm font-medium"
                     >
                       <img

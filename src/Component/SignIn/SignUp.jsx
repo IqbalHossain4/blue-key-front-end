@@ -14,7 +14,15 @@ const SignUp = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  console.log(location);
+  const [selectImg, setSelectImg] = useState("");
+
+  const imgChange = (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setSelectImg(e.target.files[0]);
+      console.log(e);
+    }
+  };
+
   const handleSignUp = (event) => {
     event.preventDefault();
     setEmailError("");
@@ -24,8 +32,7 @@ const SignUp = () => {
     const name = event.target.name.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
-    const myPhoto = event.target.myImage.value;
-
+    const myPhoto = URL.createObjectURL(selectImg);
     if (password == "") {
       setPasswordError("please fill up Empty file ");
       return;
@@ -119,8 +126,8 @@ const SignUp = () => {
           <input
             className="mt-4"
             type="file"
-            name="myImage"
-            accept="image/png, image/gif, image/jpeg"
+            accept="image/png, image/jpg, image/gif, image/jpeg"
+            onChange={imgChange}
           />
           <input
             className="bg-gray-800 hover:bg-gray-700 text-center w-full mt-4 py-2 rounded text-white font-bold"
