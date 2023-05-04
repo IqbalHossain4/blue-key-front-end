@@ -6,13 +6,7 @@ import ChefCart from "./ChefCart";
 
 const Chef = () => {
   const chefData = useLoaderData();
-  // const [chefData, setChefData] = useState([]);
 
-  // useEffect(() => {
-  //   fetch("https://myserver-git-main-iqbalhossain4.vercel.app/chef")
-  //     .then((res) => res.json())
-  //     .then((data) => setChefData(data.chefs));
-  // }, []);
   return (
     <div>
       <h1 className="text-center mt-8 font-bold text-4xl underline">
