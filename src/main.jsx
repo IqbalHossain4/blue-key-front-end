@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Chef from "./Component/Chef/Chef.jsx";
-import ChefDetails from "./Component/Chef/ChefDetails.jsx";
-import FoodDetails from "./Component/Food/FoodDetails.jsx";
+const Chef = lazy(() => import("./Component/Chef/Chef.jsx"));
+const ChefDetails = lazy(() => import("./Component/Chef/ChefDetails.jsx"));
+const FoodDetails = lazy(() => import("./Component/Food/FoodDetails.jsx"));
 import Home from "./Component/Home.jsx";
 import PriveteRoute from "./Component/PriveteRouter/PriveteRoute.jsx";
 import ErrorPage from "./Component/ErrorPage/ErrorPage";
@@ -15,6 +15,7 @@ import Wrapper from "./Wrapper.jsx";
 import Blogs from "./Component/Blogs/Blogs.jsx";
 import Career from "./Component/extra/Career.jsx";
 import Contact from "./Component/extra/Contact.jsx";
+import LoadingSpinner from "./Component/loader/LoadingSpinner.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,7 +29,11 @@ const router = createBrowserRouter([
         children: [
           {
             path: "/",
-            element: <Chef />,
+            element: (
+              <Suspense fallback={<LoadingSpinner />}>
+                <Chef />
+              </Suspense>
+            ),
             loader: () => fetch("https://myserver-eight.vercel.app/chef"),
           },
         ],
@@ -46,7 +51,9 @@ const router = createBrowserRouter([
         path: "chef/:id",
         element: (
           <PriveteRoute>
-            <ChefDetails />
+            <Suspense fallback={<LoadingSpinner />}>
+              <ChefDetails />
+            </Suspense>
           </PriveteRoute>
         ),
         loader: ({ params }) =>
@@ -54,7 +61,11 @@ const router = createBrowserRouter([
       },
       {
         path: "food/:id",
-        element: <FoodDetails />,
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <FoodDetails />
+          </Suspense>
+        ),
         loader: ({ params }) =>
           fetch(`https://myserver-eight.vercel.app/details/${params.id}`),
       },

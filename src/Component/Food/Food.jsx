@@ -5,8 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Food = ({ food }) => {
-  const notify = () => toast("Added Favorite !");
-  const location = useLocation();
+  const notify = () => toast("Added Favorite!!");
   const { id, name, photo, description, rating } = food;
   const imge = {
     width: "100%",
@@ -29,9 +28,7 @@ const Food = ({ food }) => {
             <div>
               <p title="Favorite">
                 <button onClick={notify}>
-                  <FaHeart
-                    className={`${!notify ? "text-red-400" : "text-black"}`}
-                  />
+                  <FaHeart className="text-red-500" />
                 </button>
                 <ToastContainer />
               </p>

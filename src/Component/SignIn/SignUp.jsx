@@ -77,12 +77,11 @@ const SignUp = () => {
       </h1>
       <div
         style={{
-          height: "calc(100vh - 400px)",
           width: "500px",
           margin: "0 auto",
           marginTop: "40px",
         }}
-        className="border rounded flex items-center justify-center mt-16 drop-shadow-2xl"
+        className="border rounded pt-8 p-8 flex items-center justify-center mt-16 drop-shadow-2xl"
       >
         <form onSubmit={handleSignUp}>
           <div>

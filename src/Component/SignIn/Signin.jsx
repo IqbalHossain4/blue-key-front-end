@@ -57,12 +57,11 @@ const Signin = () => {
       </h1>
       <div
         style={{
-          height: "calc(100vh - 400px)",
           width: "500px",
           margin: "0 auto",
           marginTop: "40px",
         }}
-        className="border pt-28 rounded p-8 mt-16 drop-shadow-2xl"
+        className="border pt-16 rounded p-8 mt-16 drop-shadow-2xl"
       >
         <form onSubmit={handleSignIn}>
           <div>

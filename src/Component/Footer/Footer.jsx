@@ -43,7 +43,9 @@ const Footer = () => {
             <p>+1248776522</p>
           </div>
         </div>
-
+        <div className="mt-8">
+          <hr />
+        </div>
         <div className="md:flex items-center justify-between mt-16 text-slate-400 text-xs md:text-left  text-center ">
           <div>
             <span>@blueKey.All right reserved</span>

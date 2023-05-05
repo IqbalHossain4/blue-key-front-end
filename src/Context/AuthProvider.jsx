@@ -25,22 +25,28 @@ const AuthProvider = ({ children }) => {
   const [loader, setLoader] = useState(true);
 
   useEffect(() => {
-    setLoader(<LoadingSpinner />);
+    if (loader) {
+      setLoader(<LoadingSpinner />);
+    }
   }, []);
 
   const createUser = (email, password) => {
+    setLoader(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const signIn = (email, password) => {
+    setLoader(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   const signInGoogle = () => {
+    setLoader(true);
     return signInWithPopup(auth, provider);
   };
 
   const signInGithub = () => {
+    setLoader(true);
     return signInWithPopup(auth, gitProvider);
   };
 

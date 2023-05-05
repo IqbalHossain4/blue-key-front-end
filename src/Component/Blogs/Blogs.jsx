@@ -1,7 +1,15 @@
 import React from "react";
 import { FaFilePdf } from "react-icons/fa";
 import ReactDOM from "react-dom";
-import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
+import {
+  Page,
+  Text,
+  View,
+  Document,
+  StyleSheet,
+  PDFDownloadLink,
+} from "@react-pdf/renderer";
+
 const Blogs = () => {
   const styles = StyleSheet.create({
     page: {
@@ -14,29 +22,40 @@ const Blogs = () => {
       flexGrow: 1,
     },
   });
-
-  const MyDocument = () => (
+  const myDocoment = () => {
     <Document>
-      <Page size="A4" style={styles.page}>
-        <View style={styles.section}>
-          <Text>Section #1</Text>
-        </View>
-        <View style={styles.section}>
-          <Text>Section #2</Text>
-        </View>
-      </Page>
-    </Document>
-  );
+      <Page style={styles.page}>
+        <Text style={styles.header}>
+          <h1 className="font-bold text-3xl text-center mb-8 underline">Q&A</h1>
+        </Text>
 
+        <Text style={styles.text}>lorem</Text>
+        <Text
+          style={styles.pageNumber}
+          render={({ pageNumber, totalPages }) =>
+            `${pageNumber} / ${totalPages}`
+          }
+          fixed
+        />
+      </Page>
+    </Document>;
+  };
   return (
     <div className="relative">
-      <button
-        title="Download Pdf"
-        onClick={MyDocument}
+      <PDFDownloadLink
         className="right-8 absolute"
+        document={<myDocoment />}
+        fileName="blogs"
       >
-        <FaFilePdf className="text-4xl text-red-500 " />
-      </button>
+        <button>
+          <FaFilePdf
+            title="Download Pdf"
+            className="text-4xl transition hover:text-gray-800 text-red-500 "
+          />
+          PDF
+        </button>
+      </PDFDownloadLink>
+
       <div className="mt-16 ms-8">
         <h1 className="font-bold text-3xl text-center mb-8 underline">Q&A</h1>
         <div className="text-left">

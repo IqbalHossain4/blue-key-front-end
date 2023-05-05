@@ -10,10 +10,16 @@ const FoodDetails = () => {
     height: "450px",
     borderRadius: "5px",
   };
+  const imgWrap = {
+    width: "450px",
+    margin: "0 auto",
+  };
   return (
     <div className="mt-16 w-full flex items-center justify-center">
-      <div className="mx-auto  ">
-        <img src={photo} style={imge} alt="" />
+      <div className="mx-auto">
+        <div className="max-w-screen-sm">
+          <img src={photo} style={imge} alt="" />
+        </div>
         <div className="ms-6 mt-6">
           <p className="flex items-center my-4 text-md font-semibold">
             <ReactStarsRating className="flex items-center " value={rating} />

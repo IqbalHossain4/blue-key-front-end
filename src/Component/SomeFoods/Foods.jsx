@@ -1,7 +1,8 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import SomeFoodCart from "./SomeFoodCart";
+// import LoadingSpinner from "../loader/LoadingSpinner";
+const SomeFoodCart = lazy(() => import("./SomeFoodCart"));
 
 const Foods = () => {
   const [foods, setFoods] = useState([]);
@@ -20,6 +21,7 @@ const Foods = () => {
       </h1>
       <div className="md:grid grid-cols-3 gap-4">
         {foods.slice(0, 12).map((single) => (
+          // <Suspense fallback={<LoadingSpinner />}>
           <SomeFoodCart meal={single} key={single.idMeal}></SomeFoodCart>
         ))}
       </div>
